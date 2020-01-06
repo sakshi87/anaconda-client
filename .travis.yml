@@ -41,6 +41,10 @@ matrix:
       arch: arm64
       language: generic
       env: PYTHON_VERSION=3.6
+    - os: linux
+      arch: arm64
+      language: generic
+      env: PYTHON_VERSION=3.5
     
 cache:
   directories:
