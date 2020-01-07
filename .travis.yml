@@ -49,12 +49,10 @@ before_install:
       SUDO=sudo;
       wget -q "https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh" -O archiconda.sh;
       chmod +x archiconda.sh;
-      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/local/lib:/usr/local/bin/python;
       bash archiconda.sh -b -p $HOME/miniconda;
       export PATH="$HOME/miniconda/bin:$PATH";
       $SUDO cp -r $HOME/miniconda/bin/* /usr/bin/;
       source "$HOME"/miniconda/etc/profile.d/conda.sh;
-      $SUDO ln -s $HOME/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
       service activate;
     else
       if [[ "$PYTHON_VERSION" == "2.7" ]]; then
@@ -84,7 +82,7 @@ before_install:
 sudo: false
 install: 
   - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
-      sudo chmod 777 /home/travis/miniconda/envs/test/lib/python$PYTHON_VERSION/site-packages/;
+      $SUDO chmod 777 /home/travis/miniconda/envs/test/lib/python$PYTHON_VERSION/site-packages/;
       $SUDO rm /usr/bin/lsb_release;
       $SUDO cp -r /home/travis/miniconda/envs/test/lib/python$PYTHON_VERSION /usr/lib/python$PYTHON_VERSION;
     fi;
