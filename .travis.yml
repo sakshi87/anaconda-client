@@ -92,6 +92,7 @@ sudo: false
 install: 
   - sudo chmod 777 /home/travis/miniconda/envs/test/lib/python3.7/site-packages/
   - $SUDO rm /usr/bin/lsb_release
+  - cp -r /home/travis/miniconda/envs/test/lib/python3.7 /usr/lib/python3.7
   - pip install --user $PIP_TEST_DEPENDENCIES
 
   # Install this package
