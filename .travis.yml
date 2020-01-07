@@ -89,7 +89,7 @@ install:
   - $SUDO conda install -n test $CONDA_TEST_DEPENDENCIES -q --no-pin
   - source activate test
   - sudo rm /usr/bin/lsb_release
-  - pip install --upgrade pip
+  - pip install --upgrade --user pip
   - pip install $PIP_TEST_DEPENDENCIES
 
   # Install this package
