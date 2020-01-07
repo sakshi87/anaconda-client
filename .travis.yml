@@ -67,7 +67,7 @@ install:
         MINICONDA_PYVERSION=3;
       fi;
     fi
-    if [[ "${TRAVIS_CPU_ARCH}" !== "arm64" ]]; then
+    if [[ "$os" == "osx" ]]; then
       echo "Fetching Python $MINICONDA_PYVERSION miniconda";
       wget https://repo.anaconda.com/miniconda/Miniconda$MINICONDA_PYVERSION-latest-MacOSX-x86_64.sh -O miniconda.sh;
     fi
