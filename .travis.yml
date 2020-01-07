@@ -51,7 +51,7 @@ cache:
     - $HOME/condacache/pkgs
     - $HOME/.cache/pip
 
-install:
+before_install:
   # Install latest miniconda
   - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
       SUDO=sudo;
@@ -88,6 +88,8 @@ install:
   - $SUDO conda install -n test --file requirements.txt -q --no-pin
   - $SUDO conda install -n test $CONDA_TEST_DEPENDENCIES -q --no-pin
   - source activate test
+install: 
+  - sudo chmod 777 /home/travis/miniconda/test/lib/python3.7/site-packages/
   - $SUDO rm /usr/bin/lsb_release
   - pip install --upgrade --user pip
   - pip install --user $PIP_TEST_DEPENDENCIES
