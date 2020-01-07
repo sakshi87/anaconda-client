@@ -95,7 +95,8 @@ install:
   - pip install --user $PIP_TEST_DEPENDENCIES
 
   # Install this package
-  - python setup.py develop
+  - python setup.py sdist
+  - pip install --user dist/*
 
 script:
   - $SUDO conda info --json
