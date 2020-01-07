@@ -90,7 +90,7 @@ install:
   - source activate test
   - $SUDO rm /usr/bin/lsb_release
   - pip install --upgrade --user pip
-  - $SUDO pip install $PIP_TEST_DEPENDENCIES
+  - pip install --user $PIP_TEST_DEPENDENCIES
 
   # Install this package
   - python setup.py develop
