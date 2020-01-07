@@ -62,7 +62,7 @@ install:
       $SUDO cp -r $HOME/miniconda/bin/* /usr/bin/;
       source "$HOME"/miniconda/etc/profile.d/conda.sh;
       $SUDO ln -s $HOME/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
-      $SUDO conda activate;
+      service activate;
     else
       if [[ "$PYTHON_VERSION" == "2.7" ]]; then
         MINICONDA_PYVERSION=2;
@@ -87,7 +87,7 @@ install:
   - $SUDO conda create -n test python=$PYTHON_VERSION
   - $SUDO conda install -n test --file requirements.txt -q --no-pin
   - $SUDO conda install -n test $CONDA_TEST_DEPENDENCIES -q --no-pin
-  - $SUDO conda activate test
+  - source activate test
   - pip install --upgrade pip
   - pip install $PIP_TEST_DEPENDENCIES
 
