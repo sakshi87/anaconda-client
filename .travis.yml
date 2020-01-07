@@ -32,19 +32,11 @@ matrix:
     - os: linux
       arch: arm64
       language: generic
-      env: PYTHON_VERSION=2.7
-    - os: linux
-      arch: arm64
-      language: generic
       env: PYTHON_VERSION=3.7
     - os: linux
       arch: arm64
       language: generic
       env: PYTHON_VERSION=3.6
-    - os: linux
-      arch: arm64
-      language: generic
-      env: PYTHON_VERSION=3.5
     
 cache:
   directories:
@@ -92,9 +84,15 @@ before_install:
 sudo: false
 install: 
   - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
-      sudo chmod 777 /home/travis/miniconda/envs/test/lib/python3.7/site-packages/;
-      $SUDO rm /usr/bin/lsb_release;
-      $SUDO cp -r /home/travis/miniconda/envs/test/lib/python3.7 /usr/lib/python3.7;
+     if [[ "$TRAVIS_PYTHON_VERSION" == "3.7" ]]; then
+       sudo chmod 777 /home/travis/miniconda/envs/test/lib/python3.7/site-packages/;
+       $SUDO rm /usr/bin/lsb_release;
+       $SUDO cp -r /home/travis/miniconda/envs/test/lib/python3.7 /usr/lib/python3.7;
+     else
+       sudo chmod 777 /home/travis/miniconda/envs/test/lib/python3.6/site-packages/;
+       $SUDO rm /usr/bin/lsb_release;
+       $SUDO cp -r /home/travis/miniconda/envs/test/lib/python3.6/usr/lib/python3.6;
+     fi
     fi
   - pip install --user $PIP_TEST_DEPENDENCIES
 
