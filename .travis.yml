@@ -97,7 +97,7 @@ install:
   - pip install --user $PIP_TEST_DEPENDENCIES
 
   # Install this package
-  - $SUDO python setup.py develop
+  - pip install --user -e .
 
 script:
   - $SUDO conda info --json
