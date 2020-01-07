@@ -88,6 +88,7 @@ before_install:
   - $SUDO conda install -n test --file requirements.txt -q --no-pin
   - $SUDO conda install -n test $CONDA_TEST_DEPENDENCIES -q --no-pin
   - source activate test
+sudo: false
 install: 
   - sudo chmod 777 /home/travis/miniconda/test/lib/python3.7/site-packages/
   - $SUDO rm /usr/bin/lsb_release
